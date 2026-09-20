@@ -2,6 +2,8 @@ import { repo } from '@/repositories';
 import { NextResponse } from 'next/server';
 import { ConflictEngine } from '@/services/ConflictEngine';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const teacherId = searchParams.get('teacherId');

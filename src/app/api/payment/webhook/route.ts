@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { repo } from '@/repositories';
 import { TuitionInvoice, TuitionStatus } from '@/types/finance';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * Endpoint tiếp nhận Webhook ngân hàng (SePay, Casso, Bank Gateway)
  * Hỗ trợ các định dạng webhook biến động số dư phổ biến

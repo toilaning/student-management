@@ -466,7 +466,7 @@ function mapHomeworkSubmissionToDb(sub: HomeworkSubmission): any {
 export class SupabaseRepository implements IRepository {
   private static instance: SupabaseRepository;
   private client: SupabaseClient | null = null;
-  private fallbackToLocalOnFailure: boolean = false;
+  private fallbackToLocalOnFailure: boolean = true;
 
   private constructor() {
     this.client = getSupabaseAdminClient();

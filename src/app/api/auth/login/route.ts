@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { repo } from '@/repositories';
 import { AuthService } from '@/services/AuthService';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();

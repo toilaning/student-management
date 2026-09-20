@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { repo } from '@/repositories';
 import { ClassRequest } from '@/types/schedule';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const studentId = searchParams.get('studentId');

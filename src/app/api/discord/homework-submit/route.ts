@@ -3,6 +3,8 @@ import { repo } from '@/repositories';
 import { HomeworkSubmission, HomeworkTask } from '@/types/homework';
 import { verifyDiscordSecret } from '@/lib/discordAuth';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   // 1. Authenticate secret token
   const auth = verifyDiscordSecret(request);

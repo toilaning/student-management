@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { repo } from '@/repositories';
 import { verifyDiscordSecret } from '@/lib/discordAuth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   // 1. Authenticate secret token
   const auth = verifyDiscordSecret(request);

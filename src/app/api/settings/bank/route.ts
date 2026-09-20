@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { AdminBankConfig, DEFAULT_BANK_CONFIG } from '@/types/bank';
 
+export const dynamic = 'force-dynamic';
+
 // In-memory cache lưu cấu hình ngân hàng admin
 let currentBankConfig: AdminBankConfig = { ...DEFAULT_BANK_CONFIG };
 

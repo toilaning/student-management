@@ -3,6 +3,8 @@ import { repo } from '@/repositories';
 import { verifyDiscordSecret } from '@/lib/discordAuth';
 import { TIME_SHIFTS } from '@/types/schedule';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   // 1. Xác thực Bearer Token
   const auth = verifyDiscordSecret(request);
