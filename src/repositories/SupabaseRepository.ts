@@ -495,7 +495,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getUserById(id: string): Promise<User | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getUserById(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getUserById(id);
 
     try {
       const clean = id.trim();
@@ -519,7 +519,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getUserByUsername(username: string): Promise<User | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getUserByUsername(username);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getUserByUsername(username);
 
     try {
       const clean = username.trim();
@@ -572,7 +572,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllUsers(): Promise<User[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllUsers();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllUsers();
 
     try {
       const { data, error } = await client.from('users').select('*');
@@ -589,7 +589,7 @@ export class SupabaseRepository implements IRepository {
 
   public async updateUser(user: User): Promise<User> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateUser(user);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateUser(user);
 
     try {
       const row = mapUserToDb(user);
@@ -607,7 +607,7 @@ export class SupabaseRepository implements IRepository {
 
   public async createUser(user: User): Promise<User> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createUser(user);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createUser(user);
 
     try {
       const row = mapUserToDb(user);
@@ -625,7 +625,7 @@ export class SupabaseRepository implements IRepository {
 
   public async deleteUser(id: string): Promise<boolean> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // deleteUser(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // deleteUser(id);
 
     try {
       const { error } = await client.from('users').delete().eq('id', id);
@@ -646,7 +646,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getStudentById(id: string): Promise<Student | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getStudentById(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getStudentById(id);
 
     try {
       const { data: student, error } = await client
@@ -676,7 +676,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllStudents(): Promise<Student[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllStudents();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllStudents();
 
     try {
       const { data: students, error } = await client.from('students').select('*');
@@ -703,7 +703,7 @@ export class SupabaseRepository implements IRepository {
 
   public async updateStudent(student: Student): Promise<Student> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateStudent(student);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateStudent(student);
 
     try {
       const row = mapStudentToDb(student);
@@ -731,7 +731,7 @@ export class SupabaseRepository implements IRepository {
 
   public async createStudent(student: Student): Promise<Student> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createStudent(student);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createStudent(student);
 
     try {
       const row = mapStudentToDb(student);
@@ -758,7 +758,7 @@ export class SupabaseRepository implements IRepository {
 
   public async deleteStudent(id: string): Promise<boolean> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // deleteStudent(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // deleteStudent(id);
 
     try {
       const { error } = await client.from('students').delete().eq('id', id);
@@ -779,7 +779,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getTeacherById(id: string): Promise<Teacher | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getTeacherById(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getTeacherById(id);
 
     try {
       const { data: teacher, error } = await client
@@ -809,7 +809,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllTeachers(): Promise<Teacher[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllTeachers();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllTeachers();
 
     try {
       const { data: teachers, error } = await client.from('teachers').select('*');
@@ -836,7 +836,7 @@ export class SupabaseRepository implements IRepository {
 
   public async updateTeacher(teacher: Teacher): Promise<Teacher> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateTeacher(teacher);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateTeacher(teacher);
 
     try {
       const row = mapTeacherToDb(teacher);
@@ -854,7 +854,7 @@ export class SupabaseRepository implements IRepository {
 
   public async createTeacher(teacher: Teacher): Promise<Teacher> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createTeacher(teacher);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createTeacher(teacher);
 
     try {
       const row = mapTeacherToDb(teacher);
@@ -872,7 +872,7 @@ export class SupabaseRepository implements IRepository {
 
   public async deleteTeacher(id: string): Promise<boolean> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // deleteTeacher(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // deleteTeacher(id);
 
     try {
       const { error } = await client.from('teachers').delete().eq('id', id);
@@ -893,7 +893,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllClassrooms(): Promise<Classroom[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllClassrooms();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllClassrooms();
 
     try {
       const { data, error } = await client.from('classrooms').select('*');
@@ -910,7 +910,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getClassroomById(id: string): Promise<Classroom | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getClassroomById(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getClassroomById(id);
 
     try {
       const { data, error } = await client
@@ -932,7 +932,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllClasses(): Promise<ClassEntity[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllClasses();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllClasses();
 
     try {
       const { data: classes, error } = await client.from('classes').select('*');
@@ -959,7 +959,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getClassById(id: string): Promise<ClassEntity | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getClassById(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getClassById(id);
 
     try {
       const { data: cls, error } = await client
@@ -989,7 +989,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getClassesByTeacherId(teacherId: string): Promise<ClassEntity[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getClassesByTeacherId(teacherId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getClassesByTeacherId(teacherId);
 
     try {
       const { data: classes, error } = await client
@@ -1020,7 +1020,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getClassesByStudentId(studentId: string): Promise<ClassEntity[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getClassesByStudentId(studentId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getClassesByStudentId(studentId);
 
     try {
       const { data: classStudents, error: csErr } = await client
@@ -1068,7 +1068,7 @@ export class SupabaseRepository implements IRepository {
 
   public async updateClass(classEntity: ClassEntity): Promise<ClassEntity> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateClass(classEntity);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateClass(classEntity);
 
     try {
       const row = mapClassToDb(classEntity);
@@ -1096,7 +1096,7 @@ export class SupabaseRepository implements IRepository {
 
   public async createClass(classEntity: ClassEntity): Promise<ClassEntity> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createClass(classEntity);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createClass(classEntity);
 
     try {
       const row = mapClassToDb(classEntity);
@@ -1127,7 +1127,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllScheduleSlots(): Promise<ScheduleSlot[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllScheduleSlots();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllScheduleSlots();
 
     try {
       const { data, error } = await client.from('schedule_slots').select('*');
@@ -1144,7 +1144,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getScheduleSlotById(id: string): Promise<ScheduleSlot | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getScheduleSlotById(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getScheduleSlotById(id);
 
     try {
       const { data, error } = await client
@@ -1166,7 +1166,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getScheduleSlotsByTeacherId(teacherId: string): Promise<ScheduleSlot[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getScheduleSlotsByTeacherId(teacherId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getScheduleSlotsByTeacherId(teacherId);
 
     try {
       const { data, error } = await client
@@ -1187,7 +1187,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getScheduleSlotsByClassId(classId: string): Promise<ScheduleSlot[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getScheduleSlotsByClassId(classId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getScheduleSlotsByClassId(classId);
 
     try {
       const { data, error } = await client
@@ -1212,7 +1212,7 @@ export class SupabaseRepository implements IRepository {
     const classIds = studentClasses.map(c => c.id);
 
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getScheduleSlotsByStudentId(studentId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getScheduleSlotsByStudentId(studentId);
 
     try {
       const { data, error } = await client
@@ -1233,7 +1233,7 @@ export class SupabaseRepository implements IRepository {
 
   public async createScheduleSlot(slot: ScheduleSlot): Promise<ScheduleSlot> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createScheduleSlot(slot);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createScheduleSlot(slot);
 
     try {
       const row = mapScheduleSlotToDb(slot);
@@ -1251,7 +1251,7 @@ export class SupabaseRepository implements IRepository {
 
   public async updateScheduleSlot(slot: ScheduleSlot): Promise<ScheduleSlot> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateScheduleSlot(slot);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateScheduleSlot(slot);
 
     try {
       const row = mapScheduleSlotToDb(slot);
@@ -1277,7 +1277,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAttendanceBySlotId(slotId: string): Promise<AttendanceRecord[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAttendanceBySlotId(slotId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAttendanceBySlotId(slotId);
 
     try {
       const { data, error } = await client
@@ -1298,7 +1298,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAttendanceByStudentId(studentId: string): Promise<AttendanceRecord[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAttendanceByStudentId(studentId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAttendanceByStudentId(studentId);
 
     try {
       const { data, error } = await client
@@ -1319,7 +1319,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAttendanceByClassId(classId: string): Promise<AttendanceRecord[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAttendanceByClassId(classId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAttendanceByClassId(classId);
 
     try {
       const { data, error } = await client
@@ -1340,7 +1340,7 @@ export class SupabaseRepository implements IRepository {
 
   public async saveAttendanceRecord(record: AttendanceRecord): Promise<AttendanceRecord> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // saveAttendanceRecord(record);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // saveAttendanceRecord(record);
 
     try {
       let row = mapAttendanceRecordToDb(record);
@@ -1370,7 +1370,7 @@ export class SupabaseRepository implements IRepository {
 
   public async saveAttendanceBatch(records: AttendanceRecord[]): Promise<AttendanceRecord[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // saveAttendanceBatch(records);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // saveAttendanceBatch(records);
 
     try {
       const rows = records.map(mapAttendanceRecordToDb);
@@ -1395,7 +1395,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllRequests(): Promise<ClassRequest[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllRequests();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllRequests();
 
     try {
       const { data, error } = await client.from('class_requests').select('*');
@@ -1412,7 +1412,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getRequestById(id: string): Promise<ClassRequest | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getRequestById(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getRequestById(id);
 
     try {
       const { data, error } = await client
@@ -1434,7 +1434,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getRequestsByStudentId(studentId: string): Promise<ClassRequest[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getRequestsByStudentId(studentId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getRequestsByStudentId(studentId);
 
     try {
       const { data, error } = await client
@@ -1459,7 +1459,7 @@ export class SupabaseRepository implements IRepository {
     const classIds = teacherClasses.map(c => c.id);
 
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getRequestsByTeacherId(teacherId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getRequestsByTeacherId(teacherId);
 
     try {
       const { data, error } = await client
@@ -1480,7 +1480,7 @@ export class SupabaseRepository implements IRepository {
 
   public async createRequest(request: ClassRequest): Promise<ClassRequest> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createRequest(request);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // createRequest(request);
 
     try {
       const row = mapClassRequestToDb(request);
@@ -1498,7 +1498,7 @@ export class SupabaseRepository implements IRepository {
 
   public async updateRequest(request: ClassRequest): Promise<ClassRequest> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateRequest(request);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateRequest(request);
 
     try {
       const row = mapClassRequestToDb(request);
@@ -1524,7 +1524,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllTuitionInvoices(): Promise<TuitionInvoice[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllTuitionInvoices();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllTuitionInvoices();
 
     try {
       const { data, error } = await client.from('tuition_invoices').select('*');
@@ -1541,7 +1541,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getTuitionInvoicesByStudentId(studentId: string): Promise<TuitionInvoice[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getTuitionInvoicesByStudentId(studentId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getTuitionInvoicesByStudentId(studentId);
 
     try {
       const { data, error } = await client
@@ -1562,7 +1562,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getTuitionInvoiceById(id: string): Promise<TuitionInvoice | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getTuitionInvoiceById(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getTuitionInvoiceById(id);
 
     try {
       const { data, error } = await client
@@ -1604,7 +1604,7 @@ export class SupabaseRepository implements IRepository {
 
   public async updateTuitionInvoice(invoice: TuitionInvoice): Promise<TuitionInvoice> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateTuitionInvoice(invoice);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updateTuitionInvoice(invoice);
 
     try {
       const row = mapTuitionInvoiceToDb(invoice);
@@ -1626,7 +1626,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllPayrollRecords(month?: string): Promise<PayrollRecord[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllPayrollRecords(month);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllPayrollRecords(month);
 
     try {
       let query = client.from('teacher_payroll_periods').select('*');
@@ -1647,7 +1647,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getPayrollByTeacherId(teacherId: string, month?: string): Promise<PayrollRecord | null> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getPayrollByTeacherId(teacherId, month);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getPayrollByTeacherId(teacherId, month);
 
     try {
       let query = client.from('teacher_payroll_periods').select('*').eq('teacher_id', teacherId);
@@ -1668,7 +1668,7 @@ export class SupabaseRepository implements IRepository {
 
   public async updatePayrollRecord(record: PayrollRecord): Promise<PayrollRecord> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updatePayrollRecord(record);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // updatePayrollRecord(record);
 
     try {
       const row = mapPayrollRecordToDb(record);
@@ -1690,7 +1690,7 @@ export class SupabaseRepository implements IRepository {
 
   public async savePayrollRecord(record: PayrollRecord): Promise<PayrollRecord> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // savePayrollRecord(record);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // savePayrollRecord(record);
 
     try {
       const row = mapPayrollRecordToDb(record);
@@ -1715,7 +1715,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getAllAuditLogs(): Promise<AuditLog[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllAuditLogs();
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getAllAuditLogs();
 
     try {
       const { data, error } = await client
@@ -1736,7 +1736,7 @@ export class SupabaseRepository implements IRepository {
 
   public async addAuditLog(log: Omit<AuditLog, 'id' | 'timestamp'>): Promise<AuditLog> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // addAuditLog(log);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // addAuditLog(log);
 
     try {
       const id = `AUD${Date.now().toString().slice(-6)}`;
@@ -1762,7 +1762,7 @@ export class SupabaseRepository implements IRepository {
 
   public async getNotifications(userId?: string, role?: string): Promise<AppNotification[]> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getNotifications(userId, role);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // getNotifications(userId, role);
 
     try {
       let query = client.from('notifications').select('*');
@@ -1788,7 +1788,7 @@ export class SupabaseRepository implements IRepository {
 
   public async addNotification(notification: Omit<AppNotification, 'id' | 'createdAt'>): Promise<AppNotification> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // addNotification(notification);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // addNotification(notification);
 
     try {
       const id = `NOTIF_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
@@ -1810,7 +1810,7 @@ export class SupabaseRepository implements IRepository {
 
   public async markNotificationAsRead(id: string): Promise<boolean> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // markNotificationAsRead(id);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // markNotificationAsRead(id);
 
     try {
       const { error } = await client
@@ -1831,7 +1831,7 @@ export class SupabaseRepository implements IRepository {
 
   public async markAllNotificationsAsRead(userId?: string): Promise<boolean> {
     const client = this.getClient();
-    if (!client) throw new Error("Supabase Cloud client is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // markAllNotificationsAsRead(userId);
+    if (!client) throw new Error("Supabase Cloud client is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local"); // markAllNotificationsAsRead(userId);
 
     try {
       let query = client.from('notifications').update({ is_read: true });
