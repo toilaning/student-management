@@ -13,6 +13,7 @@ export const NotificationDropdown: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const loadNotifications = async () => {
+    if (!currentUser?.id) return;
     try {
       const res = await fetch(`/api/notifications?userId=${currentUser.id}&role=${currentUser.role}`);
       const data = await res.json();
@@ -23,6 +24,10 @@ export const NotificationDropdown: React.FC = () => {
   };
 
   useEffect(() => {
+    if (!currentUser?.id) {
+      setNotifications([]);
+      return;
+    }
     loadNotifications();
     const interval = setInterval(loadNotifications, 15000); // Polling 15s
     return () => clearInterval(interval);
@@ -39,9 +44,14 @@ export const NotificationDropdown: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  if (!currentUser) {
+    return null;
+  }
+
   const unreadCount = notifications.filter(n => !n.isRead).length;
 
   const markAllRead = async () => {
+    if (!currentUser?.id) return;
     try {
       await fetch('/api/notifications', {
         method: 'POST',

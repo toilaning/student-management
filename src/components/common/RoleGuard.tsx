@@ -33,15 +33,23 @@ export const RoleGuard: React.FC<RoleGuardProps> = ({ allowedRoles, children }) 
   const targetDashboard = currentUser ? getTargetDashboard(currentUser.role) : '/login';
 
   useEffect(() => {
-    if (isReady && !isLoading && !hasAccess) {
-      const timer = setTimeout(() => {
-        setRedirecting(true);
-        router.push(targetDashboard);
-      }, 1500);
+    if (isReady && !isLoading) {
+      if (!currentUser) {
+        // Chưa đăng nhập -> chuyển ngay về /login
+        router.replace('/login');
+        return;
+      }
 
-      return () => clearTimeout(timer);
+      if (!hasAccess) {
+        const timer = setTimeout(() => {
+          setRedirecting(true);
+          router.push(targetDashboard);
+        }, 1500);
+
+        return () => clearTimeout(timer);
+      }
     }
-  }, [isReady, isLoading, hasAccess, targetDashboard, router]);
+  }, [isReady, isLoading, currentUser, hasAccess, targetDashboard, router]);
 
   // Loading skeleton state
   if (!isReady || isLoading) {
@@ -64,6 +72,11 @@ export const RoleGuard: React.FC<RoleGuardProps> = ({ allowedRoles, children }) 
     );
   }
 
+  // Not logged in (handled by redirect in useEffect, but render blank or loading during transition)
+  if (!currentUser) {
+    return null;
+  }
+
   // Access denied state
   if (!hasAccess) {
     const roleLabels: Record<Role, string> = {
@@ -78,7 +91,7 @@ export const RoleGuard: React.FC<RoleGuardProps> = ({ allowedRoles, children }) 
     return (
       <div className="flex-1 min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6">
         <div className="max-w-md w-full bg-white rounded-2xl border border-rose-200 shadow-sm p-8 flex flex-col items-center text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
-          <div className="w-14 h-14 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center">
+          <div className="w-14 h-14 bg-rose-50 text-rose-600 rounded-2xl items-center justify-center flex">
             <ShieldAlert size={32} />
           </div>
           <div className="space-y-2">

@@ -4,38 +4,29 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User } from '@/types/auth';
 
 interface AppContextType {
-  currentUser: User;
-  setCurrentUser: (user: User) => void;
+  currentUser: User | null;
+  setCurrentUser: (user: User | null) => void;
   availableUsers: User[];
   setAvailableUsers: (users: User[]) => void;
   isLoading: boolean;
   isReady: boolean;
   refreshUsers: () => Promise<void>;
+  login: (user: User) => void;
   logout: () => void;
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (open: boolean) => void;
 }
 
-const defaultAdmin: User = {
-  id: 'ADMIN001',
-  username: 'admin',
-  passwordHash: '',
-  role: 'ADMIN',
-  name: 'Quản Trị Viên Hệ Thống',
-  email: 'admin@trungtam.edu.vn',
-  isActive: true,
-};
-
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
-  const [currentUser, setCurrentUser] = useState<User>(defaultAdmin);
-  const [availableUsers, setAvailableUsers] = useState<User[]>([defaultAdmin]);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [availableUsers, setAvailableUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  // Khởi tạo nhanh từ localStorage ngay khi mount
+  // Khởi tạo nhanh từ localStorage ngay khi mount ở client
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
@@ -44,16 +35,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           const parsedUser = JSON.parse(savedUserJson);
           if (parsedUser && parsedUser.id && parsedUser.role) {
             setCurrentUser(parsedUser);
+          } else {
+            setCurrentUser(null);
           }
         } else {
-          const savedUserId = localStorage.getItem('active_user_id');
-          if (savedUserId) {
-            // Nếu chỉ có id, tạm thời giữ hoặc cập nhật id
-            setCurrentUser(prev => ({ ...prev, id: savedUserId }));
-          }
+          setCurrentUser(null);
         }
       } catch (err) {
         console.error('Lỗi khi đọc user từ localStorage:', err);
+        setCurrentUser(null);
+      } finally {
+        setIsReady(true);
       }
     }
   }, []);
@@ -90,12 +82,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             setCurrentUser(targetUser);
             localStorage.setItem('active_user_id', targetUser.id);
             localStorage.setItem('active_user', JSON.stringify(targetUser));
-          } else if (users.length > 0) {
-            // Nếu không tìm thấy user đã lưu, dùng user đầu tiên
-            setCurrentUser(users[0]);
-            localStorage.setItem('active_user_id', users[0].id);
-            localStorage.setItem('active_user', JSON.stringify(users[0]));
           }
+          // Tuyệt đối không fallback users[0] hay tự ý gán Admin
         }
       }
     } catch (err) {
@@ -110,19 +98,35 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     fetchUsers();
   }, []);
 
-  const logout = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('active_user_id');
-      localStorage.removeItem('active_user');
-      window.location.href = '/login';
-    }
-  };
-
-  const handleSetCurrentUser = (user: User) => {
+  const login = (user: User) => {
     setCurrentUser(user);
     if (typeof window !== 'undefined') {
       localStorage.setItem('active_user_id', user.id);
       localStorage.setItem('active_user', JSON.stringify(user));
+    }
+  };
+
+  const logout = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('active_user_id');
+      localStorage.removeItem('active_user');
+      localStorage.removeItem('auth_token');
+      setCurrentUser(null);
+      window.location.href = '/login';
+    }
+  };
+
+  const handleSetCurrentUser = (user: User | null) => {
+    setCurrentUser(user);
+    if (typeof window !== 'undefined') {
+      if (user) {
+        localStorage.setItem('active_user_id', user.id);
+        localStorage.setItem('active_user', JSON.stringify(user));
+      } else {
+        localStorage.removeItem('active_user_id');
+        localStorage.removeItem('active_user');
+        localStorage.removeItem('auth_token');
+      }
     }
   };
 
@@ -136,6 +140,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         isReady,
         refreshUsers: fetchUsers,
+        login,
         logout,
         isMobileMenuOpen,
         setIsMobileMenuOpen,

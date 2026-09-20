@@ -18,7 +18,7 @@ export default function TeacherClassesPage() {
 
     async function load() {
       try {
-        const res = await fetch(`/api/classes?teacherId=${currentUser.id}`);
+        const res = await fetch(`/api/classes?teacherId=${currentUser?.id || ""}`);
         const data = await res.json();
         setClasses(data.classes || []);
       } catch (e) {
@@ -35,7 +35,7 @@ export default function TeacherClassesPage() {
       <div className="flex-1 flex flex-col min-h-screen bg-slate-50">
         <Header 
           title="Danh sách Lớp học Giảng dạy" 
-          subtitle={`Các lớp do Thầy/Cô (${currentUser.id} - ${currentUser.name}) trực tiếp đứng lớp`} 
+          subtitle={`Các lớp do Thầy/Cô (${currentUser?.id || ""} - ${currentUser?.name || ""}) trực tiếp đứng lớp`} 
         />
 
         <main className="p-6 max-w-7xl mx-auto w-full space-y-6">

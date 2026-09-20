@@ -7,7 +7,7 @@ import { GraduationCap, ShieldCheck, UserCheck, Users, LogIn, AlertCircle, Loade
 
 export default function LoginPage() {
   const router = useRouter();
-  const { setCurrentUser } = useApp();
+  const { login } = useApp();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +39,7 @@ export default function LoginPage() {
       }
 
       const user = data.user;
-      setCurrentUser(user);
+      login(user);
 
       if (user.role === 'ADMIN') {
         router.push('/admin/dashboard');

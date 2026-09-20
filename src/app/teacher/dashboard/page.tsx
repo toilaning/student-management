@@ -23,10 +23,10 @@ export default function TeacherDashboardPage() {
     async function load() {
       try {
         const [clsRes, slotsRes, reqRes, payRes] = await Promise.all([
-          fetch(`/api/classes?teacherId=${currentUser.id}`),
-          fetch(`/api/schedule?teacherId=${currentUser.id}`),
-          fetch(`/api/requests?teacherId=${currentUser.id}`),
-          fetch(`/api/payroll?teacherId=${currentUser.id}&month=2026-09`),
+          fetch(`/api/classes?teacherId=${currentUser?.id || ""}`),
+          fetch(`/api/schedule?teacherId=${currentUser?.id || ""}`),
+          fetch(`/api/requests?teacherId=${currentUser?.id || ""}`),
+          fetch(`/api/payroll?teacherId=${currentUser?.id || ""}&month=2026-09`),
         ]);
 
         const clsData = await clsRes.json();
@@ -54,8 +54,8 @@ export default function TeacherDashboardPage() {
     <RoleGuard allowedRoles={['TEACHER', 'ADMIN']}>
       <div className="flex-1 flex flex-col min-h-screen bg-slate-50">
         <Header 
-          title={`Không gian Giảng viên: ${currentUser.name}`} 
-          subtitle={`Mã giáo viên: ${currentUser.id} • Chuyên môn đào tạo & Quản lý lớp học`} 
+          title={`Không gian Giảng viên: ${currentUser?.name || ""}`} 
+          subtitle={`Mã giáo viên: ${currentUser?.id || ""} • Chuyên môn đào tạo & Quản lý lớp học`} 
         />
 
         <main className="p-6 max-w-7xl mx-auto w-full space-y-6">

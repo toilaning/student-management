@@ -26,12 +26,12 @@ import {
 
 export const Sidebar: React.FC = () => {
   const pathname = usePathname();
+  const { currentUser, isMobileMenuOpen, setIsMobileMenuOpen } = useApp();
 
-  // Ẩn hoàn toàn Sidebar trên trang Đăng nhập
-  if (pathname === '/login') {
+  // Ẩn hoàn toàn Sidebar trên trang Đăng nhập hoặc khi chưa có currentUser
+  if (pathname === '/login' || !currentUser) {
     return null;
   }
-  const { currentUser, isMobileMenuOpen, setIsMobileMenuOpen } = useApp();
 
   const role = currentUser.role;
 
@@ -122,7 +122,7 @@ export const Sidebar: React.FC = () => {
       <div className="p-4 border-b border-slate-100 bg-slate-50/70">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-bold text-sm ring-2 ring-white shadow-xs">
-            {currentUser.name.charAt(0)}
+            {currentUser.name?.charAt(0) || 'U'}
           </div>
           <div className="flex-1 min-w-0">
             <div className="text-sm font-semibold text-slate-800 truncate">{currentUser.name}</div>

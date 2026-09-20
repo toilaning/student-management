@@ -10,7 +10,11 @@ export const QuickRoleSwitcher: React.FC = () => {
   const { currentUser, setCurrentUser, availableUsers } = useApp();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedRoleTab, setSelectedRoleTab] = useState<Role>(currentUser.role);
+  const [selectedRoleTab, setSelectedRoleTab] = useState<Role>(currentUser?.role || 'ADMIN');
+
+  if (!currentUser) {
+    return null;
+  }
 
   const admins = availableUsers.filter(u => u.role === 'ADMIN');
   const teachers = availableUsers.filter(u => u.role === 'TEACHER');

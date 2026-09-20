@@ -34,11 +34,11 @@ export default function StudentDashboardPage() {
         };
 
         const [stData, slotsData, attData, finData, reqData] = await Promise.all([
-          fetchSafe(`/api/students?id=${currentUser.id}`),
-          fetchSafe(`/api/schedule?studentId=${currentUser.id}`),
-          fetchSafe(`/api/attendance?studentId=${currentUser.id}`),
-          fetchSafe(`/api/finance?studentId=${currentUser.id}&summary=true`),
-          fetchSafe(`/api/requests?studentId=${currentUser.id}`),
+          fetchSafe(`/api/students?id=${currentUser?.id || ""}`),
+          fetchSafe(`/api/schedule?studentId=${currentUser?.id || ""}`),
+          fetchSafe(`/api/attendance?studentId=${currentUser?.id || ""}`),
+          fetchSafe(`/api/finance?studentId=${currentUser?.id || ""}&summary=true`),
+          fetchSafe(`/api/requests?studentId=${currentUser?.id || ""}`),
         ]);
 
         setStudent(stData.student || null);
@@ -65,8 +65,8 @@ export default function StudentDashboardPage() {
     <RoleGuard allowedRoles={['STUDENT', 'ADMIN']}>
       <div className="flex-1 flex flex-col min-h-screen bg-slate-50">
         <Header 
-          title={`Góc Học Tập: ${currentUser.name}`} 
-          subtitle={`Mã học viên: ${currentUser.id} • Theo dõi tiến độ & chuyên cần cá nhân`} 
+          title={`Góc Học Tập: ${currentUser?.name || ""}`} 
+          subtitle={`Mã học viên: ${currentUser?.id || ""} • Theo dõi tiến độ & chuyên cần cá nhân`} 
         />
 
         <main className="p-6 max-w-7xl mx-auto w-full space-y-6">
@@ -76,7 +76,7 @@ export default function StudentDashboardPage() {
               <span className="text-xs font-semibold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full">
                 Học kỳ Tháng 09/2026
               </span>
-              <h2 className="text-2xl font-bold mt-2">Xin chào, {currentUser.name}!</h2>
+              <h2 className="text-2xl font-bold mt-2">Xin chào, {currentUser?.name}!</h2>
               <p className="text-emerald-100 text-xs mt-1">
                 Bạn đang theo học <strong className="text-white">{student?.enrolledClassIds?.length || 1} lớp</strong> tại trung tâm. Hãy kiểm tra thời khóa biểu và hoàn thành đúng hạn nhé.
               </p>

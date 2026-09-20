@@ -46,9 +46,9 @@ export default function StudentClassesPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           classId,
-          studentId: currentUser.id,
+          studentId: currentUser?.id || "",
           action: 'ENROLL',
-          actorId: currentUser.id,
+          actorId: currentUser?.id || "",
         }),
       });
       const data = await res.json();

@@ -41,7 +41,7 @@ export default function TeacherRequestsPage() {
           action: 'DECIDE',
           requestId,
           status,
-          reviewerId: currentUser.id,
+          reviewerId: currentUser?.id || "",
           reviewNote: status === 'ĐÃ_DUYỆT' ? 'Đã duyệt yêu cầu của em.' : 'Không thể sắp xếp theo nguyện vọng.',
         }),
       });

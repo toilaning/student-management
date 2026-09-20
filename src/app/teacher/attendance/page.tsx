@@ -27,7 +27,7 @@ function AttendanceContent() {
 
     async function loadTeacherSlots() {
       try {
-        const res = await fetch(`/api/schedule?teacherId=${currentUser.id}`);
+        const res = await fetch(`/api/schedule?teacherId=${currentUser?.id || ""}`);
         const data = await res.json();
         const loadedSlots = data.slots || [];
         setSlots(loadedSlots);
@@ -80,7 +80,7 @@ function AttendanceContent() {
                 date: currentSlot.date,
                 status: 'Có mặt',
                 checkinTime: currentSlot.startTime,
-                updatedBy: currentUser.id,
+                updatedBy: currentUser?.id || "",
                 updatedAt: new Date().toISOString(),
               }));
               setRecords(drafts);
@@ -127,8 +127,8 @@ function AttendanceContent() {
         body: JSON.stringify({
           records,
           slotId: selectedSlotId,
-          updatedBy: currentUser.id,
-          updaterName: currentUser.name,
+          updatedBy: currentUser?.id || "",
+          updaterName: currentUser?.name || "",
         }),
       });
       if (res.ok) {

@@ -17,7 +17,7 @@ export default function StudentAttendancePage() {
 
     async function load() {
       try {
-        const res = await fetch(`/api/attendance?studentId=${currentUser.id}`);
+        const res = await fetch(`/api/attendance?studentId=${currentUser?.id || ""}`);
         const data = await res.json();
         setRecords(data.records || []);
       } catch (e) {
@@ -39,7 +39,7 @@ export default function StudentAttendancePage() {
       <div className="flex-1 flex flex-col min-h-screen bg-slate-50">
         <Header 
           title="Lịch Sử Chuyên Cần & Điểm Danh" 
-          subtitle={`Theo dõi tình trạng đi học của ${currentUser.name} (${currentUser.id})`} 
+          subtitle={`Theo dõi tình trạng đi học của ${currentUser?.name || ""} (${currentUser?.id || ""})`} 
         />
 
         <main className="p-6 max-w-7xl mx-auto w-full space-y-6">

@@ -172,7 +172,7 @@ export default function StudentRequestsPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          studentId: currentUser.id,
+          studentId: currentUser?.id || "",
           classId: form.classId,
           scheduleSlotId: form.scheduleSlotId,
           targetScheduleSlotId: form.type === 'DOI_LICH' ? form.targetScheduleSlotId : undefined,

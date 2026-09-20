@@ -17,7 +17,7 @@ export default function StudentSchedulePage() {
 
     async function load() {
       try {
-        const res = await fetch(`/api/schedule?studentId=${currentUser.id}`);
+        const res = await fetch(`/api/schedule?studentId=${currentUser?.id || ""}`);
         const data = await res.json();
         setSlots(data.slots || []);
       } catch (e) {
@@ -34,7 +34,7 @@ export default function StudentSchedulePage() {
       <div className="flex-1 flex flex-col min-h-screen bg-slate-50">
         <Header 
           title="Thời Khóa Biểu Học Viên" 
-          subtitle={`Lịch học của ${currentUser.name} (${currentUser.id}) trong tháng 09/2026`} 
+          subtitle={`Lịch học của ${currentUser?.name || ""} (${currentUser?.id || ""}) trong tháng 09/2026`} 
         />
 
         <main className="p-6 max-w-7xl mx-auto w-full space-y-6">
